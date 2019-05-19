@@ -1,116 +1,120 @@
 ﻿(*
 
-OBJECTIVE: Practing functions and modules with F#
+OBJECTIVE: Practing different data types with F#
 
 *)
 
 
 
 
-module BasicFunctions = 
+
+//NUMERIC TYPES
+
+module IntegersAndNumbers = 
+
+    /// This is a sample integer.
+    let sampleInteger = 176
+    printfn "sampleInteger: %d\n" sampleInteger
+
+
+    /// This is a sample floating point number.
+    let sampleDouble = 4.1
+    printfn "sampleDouble: %f\n" sampleDouble 
 
 
 
-    /// You use 'let' to define a function. This one accepts an integer argument and returns an integer. 
-    /// Parentheses are optional for function arguments, except for when you use an explicit type annotation.
-    let sampleFunction1 x = x*x + 3
+    /// This computed a new number by some arithmetic.  Numeric types are converted using
+    /// functions 'int', 'double' and so on.
+    let sampleInteger2 = (sampleInteger/4 + 5 - 7) * 4 + int sampleDouble
+
+    let testConvert = int 5.5
+    printfn "Testing Integer Conversion: %d\n" testConvert
 
 
 
-    /// Apply the function, naming the function return result using 'let'. 
-    /// The variable type is inferred from the function return type.
-    let result1 = sampleFunction1 4573
+    /// This is a list of the numbers from 0 to 99.
+    let sampleNumbers = [ 0 .. 99 ]
+    printfn "sampleList: %A\n" sampleNumbers
 
 
-
-    // This line uses '%d' to print the result as an integer. This is type-safe.
-    // If 'result1' were not of type 'int', then the line would fail to compile.
-    printfn "The result of squaring the integer 4573 and adding 3 is %d" result1
-
-
-
-
-    /// When needed, annotate the type of a parameter name using '(argument:type)'.  Parentheses are required.
-    let sampleFunction2 (x:int) = 2*x*x - x/5 + 3
-    let result2 = sampleFunction2 (7 + 4)
-    printfn "The result of applying the 2nd sample function to (7 + 4) is %d" result2
-
-
-
-
-    /// Conditionals use if/then/elif/else.
-    ///
-    /// Note that F# uses white space indentation-aware syntax, similar to languages like Python.
-    let sampleFunction3 x = 
-        if x < 100.0 then 
-            2.0*x*x - x/5.0 + 3.0
-        else 
-            2.0*x*x + x/5.0 - 37.0
-
-
-    let result3 = sampleFunction3 (6.5 + 4.5)
-
-
-    // This line uses '%f' to print the result as a float.  As with '%d' above, this is type-safe.
-    printfn "The result of applying the 3rd sample function to (6.5 + 4.5) is %f" result3
+    /// This is a list of all tuples containing all the numbers from 0 to 99 and their squares.
+    ///prints a list that includes tuples, using '%A' for generic printing.
+    let sampleTableOfSquares = [ for i in 0 .. 99 -> (i, i*i) ]
+    printfn "sampleTableofSquares: %A\n\n" sampleTableOfSquares
 
 
 
 
 
 
+//BOOLEAN TYPE
 
-module Immutability =
+module Booleans =
+
+    /// Booleans values are 'true' and 'false'.
+    let boolean1 = true
+    printfn "boolean1: %b" boolean1
+    let boolean2 = false
+    printfn "boolean2: %b" boolean2
+
+
+
+    /// Operators on booleans are 'not', '&&' and '||'.
+    let boolean3 = not boolean1 && (boolean2 || false)
+
+    // This line uses '%b'to print a boolean value.  This is type-safe.
+    printfn "The expression 'not boolean1 && (boolean2 || false)' is: %b\n\n\n" boolean3
 
 
     
-    /// Binding a value to a name via 'let' makes it immutable.
-    ///
-    /// The second line of code fails to compile because 'number' is immutable and bound.
-    /// Re-defining 'number' to be a different value is not allowed in F#.
-    let number = 2
-    //let number = 3
+
+
+
+//STRING TYPE
+
+module StringManipulation = 
+
+    /// Strings use double quotes.
+    let string1 = "Hello"
+    printfn "string1: %s" string1
+    let string2  = "world"
+    printfn "string2: %s" string2
+
+
+
+    /// Strings can also use @ to create a verbatim string literal.
+    /// This will ignore escape characters such as '\', '\n', '\t', etc.
+    let string3 = @"C:\Program Files\"
+    printfn "string3: %s" string3
+
+
+
+    /// String literals can also use triple-quotes.
+    let string4 = """The computer said "hello world" when I told it to!"""
+    printfn "string4: %s" string4
 
 
 
 
-    /// A mutable binding.  This is required to be able to mutate the value of 'otherNumber'.
-    let mutable otherNumber = 2
-    printfn "'otherNumber' is %d" otherNumber
-
-    // When mutating a value, use '<-' to assign a new value.
-    //
-    // Note that '=' is not the same as this.  '=' is used to test equality.
-    otherNumber <- otherNumber + 1
-    printfn "'otherNumber' changed to be %d" otherNumber
+    /// String concatenation is normally done with the '+' operator.
+    let string5 = string1 + " " + string2 
+ 
+    // This line uses '%s' to print a string value.  This is type-safe.
+    printfn "string5: %s" string5
 
 
 
 
+    /// Substrings use the indexer notation.  This line extracts the first 7 characters as a substring.
+    /// Note that like many languages, Strings are zero-indexed in F#.
+    let substring = string5.[0..6]
+    printfn "substring of string5: %s" substring
 
 
 
 
-(*
-
-    Functions and Modules
-
-The most fundamental pieces of any F# program are functions organized into modules. 
-Functions perform work on inputs to produce outputs, and they are organized under 
-Modules, which are the primary way you group things in F#. 
-
-They are defined using the let binding, which give the function a name and define 
-its arguments.
-
-
-'let' bindings are also how you bind a value to a name, similar to a variable in other 
-languages. let bindings are immutable by default, which means that once a value or 
-function is bound to a name, it cannot be changed in-place. This is in contrast to 
-variables in other languages, which are mutable, meaning their values can be changed 
-at any point in time. If you require a mutable binding, you can use let mutable ... syntax.
-
-*)
 
 
 
-//REFERENCE: https://docs.microsoft.com/en-us/dotnet/fsharp/tour
+
+// REFERENCE: https://docs.microsoft.com/en-us/dotnet/fsharp/tour
