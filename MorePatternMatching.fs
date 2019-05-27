@@ -7,7 +7,7 @@ OBJECTIVE: Practice more pattern matching techniques with F#, specifically the 4
 
 
 
-module LecturesPatternMatching = 
+module MorePatternMatching = 
 
     
     // Here are functions that find the last element of a list
