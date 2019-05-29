@@ -10,7 +10,8 @@ OBJECTIVE: Define a F# function curry f that converts an uncurried function to
 
 module P2Question1 = 
 
-
+    // The curry type is    : int -> int -> int
+    //The uncurry type is   : int * int -> int
 
 
    //curry f = converts an uncurried function to a curried function
