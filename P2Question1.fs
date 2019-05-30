@@ -1,7 +1,7 @@
 (*
 
 
-OBJECTIVE: Define a F# function curry f that converts an uncurried function to a curried function, 
+OBJECTIVE: (Problem set 2: Question 1) Define a F# function curry f that converts an uncurried function to a curried function, 
            and an F# function uncurry f that does the opposite conversion.
 
 *)
