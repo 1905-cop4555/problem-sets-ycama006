@@ -1,0 +1,32 @@
+(*
+
+OBJECTIVE:  To attempt, test, and analyze how to use record types, let functions, and mutable reference cells to 
+            make objective oriented programming with F#
+
+*)
+
+module ImperativeOOPBankAccount = 
+
+
+    type Account = 
+
+        {
+
+            deposit : int -> unit 
+            balance : unit -> int
+
+        }
+
+    let account =
+        let bal = ref 1000
+        {
+
+            deposit = fun d -> bal := !bal + d;
+            balance = fun () -> !bal;
+
+        }
+
+
+    printfn "\n\nImperativeOOPBankAccount: %d" ( account.balance () )
+    account.deposit 200 
+    printfn "ImperativeOOPBankAccount: %d" ( account.balance () )
