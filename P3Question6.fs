@@ -76,5 +76,12 @@ module P3Question6 =
 
 
     printfn "\nP3Question6C: %A" (take 15 altSeriesC)
+    
+    
+    /------------------------------------------------------------
+    
+    
+    let altSeriesD = upfrom 5.0
+    printfn "\nP3Question6D: %A" (take 11 altSeriesD)
 
 
