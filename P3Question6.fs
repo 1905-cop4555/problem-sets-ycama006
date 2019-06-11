@@ -53,6 +53,8 @@ module P3Question6 =
     /------------------------------------------------------------
     
     
+    // Generate an infinite stream for the alternating series of 1/(2**n):
+    // 1/2, -1/4, 1/8, -1/16, 1/32, -1/64, ...
     type 'a stream = 
         Cons of 'a * (unit -> 'a stream)
 
@@ -74,13 +76,15 @@ module P3Question6 =
 
 
 
-
+    // Display numbers up to the 15th number in the series. 
+    // The numbers should display as the floating point version of the fractions.
     printfn "\nP3Question6C: %A" (take 15 altSeriesC)
     
     
     /------------------------------------------------------------
     
-    
+    // Display the 5th through 15th numbers in the series. 
+    // The numbers should display as the floating point version of the fractions.
     let altSeriesD = upfrom 5.0
     printfn "\nP3Question6D: %A" (take 11 altSeriesD)
 
