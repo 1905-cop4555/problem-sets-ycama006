@@ -48,4 +48,33 @@ module P3Question6 =
         
 
     printfn "\nP3Question6B: %A" (specificElements)   
+    
+    
+    /------------------------------------------------------------
+    
+    
+    type 'a stream = 
+        Cons of 'a * (unit -> 'a stream)
+
+
+    let rec two = function
+        |0.0 -> 1.0
+        |powerNtimes -> 2.0 * two (powerNtimes-1.0)
+
+
+    let rec upfrom powerNtimes = Cons( 1.0 / (two powerNtimes) * (if ( (powerNtimes + 1.0) % 2.0 = 0.0) then 1.0 else -1.0), fun () -> upfrom(powerNtimes+1.0))
+
+
+    let altSeriesC = upfrom 1.0
+
+    
+    let rec take n (Cons(x,xsf)) =
+          if n = 0 then []
+                   else x :: take (n-1) ( xsf () )
+
+
+
+
+    printfn "\nP3Question6C: %A" (take 15 altSeriesC)
+
 
