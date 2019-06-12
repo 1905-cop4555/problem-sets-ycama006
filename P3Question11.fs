@@ -24,3 +24,14 @@ module P3Question11 =
 
     printfn "\n\n\nP3Quesiton11: %d" (fibonacci 3)
 
+
+
+    // Tail Recursive
+    let fib n =
+        let rec tfib n1 n2 = function
+        | 0 -> n1
+        | n -> tfib n2 (n2 + n1) (n - 1)
+        tfib 0 1 n  
+
+
+    printfn "\n\n\nTail Recursive: %d" (fib 5)
