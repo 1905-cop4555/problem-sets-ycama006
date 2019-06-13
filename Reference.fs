@@ -760,3 +760,37 @@ module P3Question1 =
 //-------------------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------
 
+(*
+    
+    * QUESTION 5 *
+    
+    Write a tail-recursive F# function interleave(xs,ys) that interleaves two lists:
+      > interleave ([1;2;3],[4;5;6]);;
+                val it : int list = [1; 4; 2; 5; 3; 6] 
+    Assume that the two lists have the same length.
+
+    Compare the timing of the recursive function from Problem Set 1 with this tail-recursive version. Time these examples in both versions.
+
+    list1 = [1..2..19999], list2 = [2..2..20000]
+    list1 = [1..2..199999], list2 = [2..2..200000]
+*)
+
+module P3Question5 = 
+
+
+    let rec nonTailInterleave = function
+        | [], [] -> []
+        | xs, [] -> xs
+        | [], ys -> ys
+        | x::xs, y::ys -> x::y::nonTailInterleave(xs,ys)
+
+    let rec interleave x y a = 
+        match x, y with 
+        | [], [] -> a
+        | _, [] -> failwith "Different lengths"
+        | [], _ -> failwith "Different lengths"
+        | x::xs, y::ys -> x::y::interleave xs ys a
+
+
+    interleave [1;2;3] [4;5;6] []
+
