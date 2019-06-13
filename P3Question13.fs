@@ -43,3 +43,16 @@ module P3Question13 =
 
 
     printfn "\n\n\nP3Question13: %d" (factorial 3)
+    
+    
+    
+    
+    //Tail Recursive
+    let rec factorialTail n tail =
+        match n with 
+        | 0 | 1 -> tail
+        | _ ->  factorialTail (n-1) (tail * n)
+
+
+    printfn "Tail Recursive: %d" (factorialTail 8 1)
+
