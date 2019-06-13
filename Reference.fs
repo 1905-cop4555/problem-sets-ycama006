@@ -793,4 +793,23 @@ module P3Question5 =
 
 
     interleave [1;2;3] [4;5;6] []
+    
+   
+   
+(*
+    * QUESTION 8 *
+    
+    Create a tail-recursive function that has a big integer as input and calculates 2I raised to that power.
+    Calculate these powers of 2I: 0I, 1I, 2I, 4I, 16I, 256I, 1024I, 32768I and 65536I.
+*)
+   
+module P3Question8 = 
+
+    let power n =
+    let rec loop a n =
+        match n with 
+        | n when n = 0I -> a
+        | n when n = 1I -> 2I
+        | n -> loop (a + (2I*2I)) (n - 1I)
+    loop 1I n
 
